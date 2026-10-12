@@ -13,7 +13,7 @@ $(call inherit-product, device/xiaomi/pond/device.mk)
 
 # Device identifier
 PRODUCT_DEVICE := pond
-PRODUCT_NAME := shrp_pond
+PRODUCT_NAME := twrp_pond
 PRODUCT_BRAND := Redmi
 PRODUCT_MODEL := Redmi 14C
 PRODUCT_MANUFACTURER := Xiaomi
