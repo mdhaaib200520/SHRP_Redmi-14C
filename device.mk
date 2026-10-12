@@ -12,9 +12,10 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base.mk)
 
 # ==================================================
-# Virtual A/B (ramdisk layout only — NO OTA stack)
+# Dynamic partitions
 # ==================================================
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
+
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.twrp.vendor_boot=true
 
@@ -31,6 +32,11 @@ PRODUCT_PACKAGES += \
     android.hardware.boot@1.0-impl-1.2-mtkimpl \
     android.hardware.boot@1.2-mtkimpl.recovery \
     bootctrl.mt6768
+
+PRODUCT_PACKAGES += \
+    android.hardware.boot@1.2-impl \
+    android.hardware.boot@1.2-impl.recovery \
+    android.hardware.boot@1.2-service
 
 # ==================================================
 # Fastbootd
@@ -72,7 +78,8 @@ TW_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += \
     $(TARGET_OUT_SHARED_LIBRARIES)/libkeymaster_messages.so
 
 # ==================================================
-# Recovery init scripts — CORRECT PATH (recovery/root, not recovery/fox)
+# Recovery init scripts
+# Copy from recovery/root/ into the recovery ramdisk.
 # ==================================================
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/recovery/root/init.recovery.mt6768.rc:$(TARGET_COPY_OUT_RECOVERY)/root/init.recovery.mt6768.rc \
