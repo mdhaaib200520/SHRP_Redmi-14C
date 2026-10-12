@@ -1,4 +1,3 @@
-
 #
 # Copyright (C) 2017-2025 The Android Open Source Project
 # Copyright (C) 2014-2023 The Team Win LLC
@@ -13,6 +12,25 @@ DEVICE_PATH := device/xiaomi/pond
 
 ALLOW_MISSING_DEPENDENCIES := true
 BUILD_BROKEN_DUP_RULES := true
+
+# ============================================================
+# SHRP Flags
+# ============================================================
+
+SHRP_PATH := $(DEVICE_PATH)
+SHRP_MAINTAINER := SHRP
+SHRP_DEVICE_CODE := pond
+SHRP_REC_TYPE := treble
+SHRP_DEVICE_TYPE := A/B
+SHRP_EDL_MODE := 0
+SHRP_EXTERNAL := /external_sd
+SHRP_INTERNAL := /sdcard
+SHRP_OTG := /usb_otg
+SHRP_FLASH := 1
+SHRP_REC := /dev/block/bootdevice/by-name/vendor_boot
+SHRP_AB := true
+SHRP_EXPRESS := true
+SHRP_DARK := true
 
 # ============================================================
 # Architecture
@@ -50,7 +68,6 @@ TARGET_BOARD_PLATFORM := mt6768
 
 # ============================================================
 # Kernel / DTB / Boot image
-# Verify these values against your actual boot images.
 # ============================================================
 
 TARGET_KERNEL_ARCH := arm64
@@ -100,7 +117,6 @@ BOARD_VENDOR_BOOTIMAGE_PARTITION_SIZE := 67108864
 
 # ============================================================
 # Dynamic partitions
-# Keep these values only if they match the device's super layout.
 # ============================================================
 
 BOARD_SUPER_PARTITION_SIZE := 9126805504
@@ -139,7 +155,6 @@ BOARD_BUILD_SYSTEM_ROOT_IMAGE := false
 
 # ============================================================
 # Init libraries
-# Confirm libinit_pond is defined by your device tree.
 # ============================================================
 
 TARGET_INIT_VENDOR_LIB := //$(DEVICE_PATH):libinit_pond
@@ -156,7 +171,6 @@ TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/system/etc/recovery.fstab
 
 # ============================================================
 # Vendor boot recovery ramdisk
-# Verify these variables are supported by your SHRP branch.
 # ============================================================
 
 TARGET_NO_RECOVERY := true
@@ -210,7 +224,6 @@ TARGET_USES_MKE2FS := true
 
 # ============================================================
 # Haptics
-# Retain if supported by your SHRP source branch.
 # ============================================================
 
 TW_SUPPORT_INPUT_AIDL_HAPTICS := true
@@ -250,7 +263,6 @@ TWRP_INCLUDE_LOGCAT := true
 
 # ============================================================
 # Vendor modules
-# Verify each module exists in your vendor_boot/vendor image.
 # ============================================================
 
 TW_LOAD_VENDOR_BOOT_MODULES := true
